@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>Noon</title>{% endblock %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/932e7aff45.js" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="top_menu">
+        <div class="language">
+            <button class="english">EN</button>
+            <button class="lithuanian" >LT</button>
+        </div>
+        <a href="/"><img src="/static/img/logo.png" height="70" width="220"/></a>
+        {% if user.is_authenticated %}
+            <div class="loggedin">
+                <a href="{% url 'user_login'%}?next=/noon" style="text-decoration: underline; color: black";><p>{{ user.get_username }}</p></a>
+                <a href="{% url 'logout'%}?next=/noon"><button class="login">Log out</button></a>
+            </div>
+            {% else %}
+            <div class="signbuttons">
+                <a href="{% url 'login'%}"><button class="login">Log in</button></a>
+                <a href="{% url 'register'%}"><button class="signup">Sign Up</button></a>
+            </div>
+        {% endif %}
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+    <div class="footer">
+        <a href="{% url 'login'%}">For restaurants</a>
+    </div>
+    {% block extrascripts %}{% endblock %}
+</body>
+</html>
+{# some text #}
+{% comment 'coment example' %}
+{% endcomment %}

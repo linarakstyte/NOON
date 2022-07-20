@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}<title>All Restaurants</title>{% endblock %}
+
+{% block content %}
+     <div class="row two_rows" >
+            {% for item1, item2, item3 in grouped_list %}
+                <div class="tab {{ item1 }}">
+                    <h4>{{ item3.restaurant.name }}</h4>
+                    <p>{% if item3.soup %}{{ item3.soup }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.first_main %}{{ item3.first_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.second_main %}{{ item3.second_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.third_main %}{{ item3.third_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.dessert %}{{ item3.dessert }}{% else %} &nbsp; {% endif %}</p>
+                </div>
+            {% endfor %}
+    </div>
+    {% for a in num_iter %}
+    {% endfor %}
+    <div class="pagination" >
+          {% if num_iter.has_other_pages %}
+            {% for i in num_iter.paginator.page_range %}
+               {% if users.number == i %}
+                    <span class="current" style="text-decoration:none; color:white">{{ i }} </span>
+               {% else %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+               {% endif %}
+            {% endfor %}
+          {% endif %}
+      </div>
+{% endblock %}
+
+
+
+<!--<div class="center" >-->
+<!--            <ul class="pagination" syle="display:inline;">-->
+<!--                {% if num_iter.has_previous %}-->
+<!--                  <li ><a href="?page={{ num_iter.previous_page_number }}">&laquo;</a></li>-->
+<!--                {% else %}-->
+<!--                  <li class="disabled"><span>&laquo;</span></li>-->
+<!--                {% endif %}-->
+<!--                {% for i in num_iter.paginator.page_range %}-->
+<!--                  {% if users.number == i %}-->
+<!--                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>-->
+<!--                  {% else %}-->
+<!--                    <li><a href="?page={{ i }}">{{ i }}</a></li>-->
+<!--                  {% endif %}-->
+<!--                {% endfor %}-->
+<!--                {% if num_iter.has_next %}-->
+<!--                  <li><a href="?page={{ num_iter.next_page_number }}">&raquo;</a></li>-->
+<!--                {% else %}-->
+<!--                  <li class="disabled"><span>&raquo;</span></li>-->
+<!--                {% endif %}-->
+<!--            </ul>-->
+<!--         </div>-->

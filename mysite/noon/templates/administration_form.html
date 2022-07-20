@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}<title>Administration</title>{% endblock %}
+{% block content %}
+    {% if object.visitor == user %}
+    <h2>Update menu</h2>
+      <div class="fieldWrapper" style="height: 425px;">
+        <hr><br/>
+        <form action="#" method="post">
+          {% csrf_token %}
+          {{ form }}</br>
+          <input type="submit" value="Save">
+        </form>
+      </div>
+      {% endif %}
+{% endblock %}

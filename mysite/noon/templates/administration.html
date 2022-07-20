@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}<title>Administration</title>{% endblock %}
+{% block content %}
+ <div class="weekly_menu">
+    <h1>Your weekly menu:</h1>
+    {% if menus %}
+    <ul>
+       {% for menu in menus %}
+        <li >
+        <h4>Day: {{menu.get_weekday_display}}</h4>
+      </li>
+      <li >
+        <p>Soup:{{menu.soup}}</p>
+      </li>
+      <li >
+        <p>First main:{{menu.first_main}}</p>
+      </li>
+      <li >
+        <p>Second main:{{menu.second_main}}</p>
+      </li>
+      <li >
+        <p>Third main:{{menu.third_main}}</p>
+      </li>
+       <li >
+        <p>Dessert:{{menu.dessert}}</p>
+      </li>
+        <a href="{% url 'administration_form' menu.id %}"><button class="update">Update</button></a>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>No menu update available</p>
+    {% endif %}
+
+</div>
+{% endblock %}

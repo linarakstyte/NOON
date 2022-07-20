@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}<title>NOON</title>{% endblock %}
+{% load static %}
+{% block content %}
+    <div class="top_greeting">
+        <h2>Today's lunch offers</h2>
+        <div class="search">
+            <form action="{% url 'search' %}"  method="get" class="form-inline my-2 my-md-0">
+            <input name="q" class="form-control" placeholder="&#xf002; Search" style="font-family:Arial, FontAwesome">
+        </div>
+    </div>
+    <div class="swiper">
+        <div class="row">
+            {% for item1, item2 in grouped_list %}
+                <div class="tab {{ item1 }}">
+                    <h4>{{ item2.restaurant.name }}</h4>
+                    <p>{% if item2.soup %}{{ item2.soup }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.first_main %}{{ item2.first_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.second_main %}{{ item2.second_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.third_main %}{{ item2.third_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.dessert %}{{ item2.dessert }}{% else %} &nbsp; {% endif %}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <div class="map_section">
+        <img src="/static/img/map.png" alt="Vilnius" usemap="#vilniusmap" height="400">
+            <map name="vilniusmap">
+                <area shape="circle" coords="460, 317, 40" alt="uzupis_paupys" href="{% url 'location' some_slug='Uzupis' %}"  style="cursor:pointer">
+                <area shape="circle" coords="345, 303, 40" alt="senamiestis" href="{% url 'location' some_slug='Senamiestis' %}" style="cursor:pointer">
+                <area shape="circle" coords="245, 291, 40" alt="naujamiestis" href="{% url 'location' some_slug='Naujamiestis' %}" style="cursor:pointer">
+                <area shape="circle" coords="290, 118, 40" alt="snipiskes" href="{% url 'location' some_slug='Snipiskes' %}" style="cursor:pointer">
+                <area shape="circle" coords="400, 88, 40" alt="zirmunai" href="{% url 'location' some_slug='Zirmunai' %}" style="cursor:pointer">
+                <area shape="circle" coords="500, 154, 40" alt="antakalnis" href="{% url 'location' some_slug='Antakalnis' %}" style="cursor:pointer">
+            </map>
+        <div class="map_text">
+            <h3> Press on the area to find lunch offers near you</h3>
+            <a class="view_all" href="{% url 'all_restaurants' %}">View All</a>
+        </div>
+    </div>
+{% block extrascripts %}<script src="{% static 'js/script.js' %}"></script>{% endblock %}
+{% endblock %}
+
+
+
+

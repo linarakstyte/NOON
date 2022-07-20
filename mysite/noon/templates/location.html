@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Location</title>{% endblock %}
+
+{% block content %}
+    <h2>Day lunch offers in {{ some_slug }}:</h2>
+    <div class="row two_rows" >
+      <div class="row" style="height: 425px;">
+            {% for item1, item2, item3 in grouped_list %}
+                <div class="tab {{ item1 }}">
+                    <h4>{{ item2.name }}</h4>
+                    <p>{% if item3.soup %}{{ item3.soup }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.first_main %}{{ item3.first_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.second_main %}{{ item3.second_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.third_main %}{{ item3.third_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item3.dessert %}{{ item3.dessert }}{% else %} &nbsp; {% endif %}</p>
+                </div>
+            {% endfor %}
+       </div>
+    </div>
+{% endblock %}

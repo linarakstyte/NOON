@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}<title>Search results</title>{% endblock %}
+{% block content %}
+    {% if num_iter %}
+        <h2>Search results:</h2>
+        <div class="row" style="height: 425px;">
+            {% for item1, item2 in grouped_list %}
+                <div class="tab {{ item1 }}">
+                    <h4>{{ item2.restaurant.name }}</h4>
+                    <p>{% if item2.soup %}{{ item2.soup }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.first_main %}{{ item2.first_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.second_main %}{{ item2.second_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.third_main %}{{ item2.third_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.dessert %}{{ item2.dessert }}{% else %} &nbsp; {% endif %}</p>
+                </div>
+        </div>
+            {% endfor %}
+    {% elif num_iter2 %}
+        <div class="row" style="height: 425px;">
+            {% for item1, item2 in grouped_list2 %}
+                <div class="tab {{ item1 }}">
+                    <h4>{{ item2.restaurant.name }}</h4>
+                    <p>{% if item2.soup %}{{ item2.soup }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.first_main %}{{ item2.first_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.second_main %}{{ item2.second_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.third_main %}{{ item2.third_main }}{% else %} &nbsp; {% endif %}</p>
+                    <p>{% if item2.dessert %}{{ item2.dessert }}{% else %} &nbsp; {% endif %}</p>
+                </div>
+        </div>
+            {% endfor %}
+    {% else %}
+        <p style="margin-bottom: 400">No results</p>
+    {% endif %}
+
+{% endblock %}

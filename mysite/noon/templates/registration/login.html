@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p>Login error, try again</p>
+  {% endif %}
+  <div class="login_table">
+    <form method="post" action="{% url 'login' %}"  style="height: 320px;">
+    {% csrf_token %}
+    <div class="submit">
+        <div class="login_display">
+            <div class="input_display">
+                <p>Username: </p>
+                <span>{{ form.username }}</span>
+            </div>
+            <div class="input_display">
+                <p>Password: </p>
+                <span style="background: white;">{{ form.password }}</span>
+            </div>
+        </div>
+        <input type="submit" value="Login" class="login"/>
+    </div>
+    <p class="forgot"><a href="{% url 'password_reset' %}" >Forgot your password?</a></p>
+    </form>
+  </div>
+
+{% endblock %}
